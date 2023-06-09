@@ -2,7 +2,6 @@
  * File:   main.c
  * Author: Lukasz Kowalewski
  *
- * Napisac program sterujacy prostym kotlem weglowym:
  * Po nacisninciu przycisku PRACA AUTOMATYCZNA ON/OFF (zmiana z 0 na 1 na wybranym wejsciu)
  * sterowac temperatura kotla tak, aby utrzymac zadana przez uzytkownika temperature
  * pracy (wartosc 8-bitowa na wybranym wejsciu). Symulowana temperatura ma wzrastac

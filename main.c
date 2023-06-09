@@ -34,7 +34,7 @@
 #define TEMPERATURE         PORTB   // TEMPERATURE INSIDE FURNACE
 
 //// CONSTANTS ////
-const int MAX_TEMP      = 90;       // MAXIMUM OPERATING TEMPERATURE
+const int MAX_TEMP        = 90;     // MAXIMUM OPERATING TEMPERATURE
 const int TMR2_MULTIPLIER = 200;    // 2s (200 * 10ms[Timer2]) - SENSORS REFRESH RATE
 const int TMR0_MULTIPLIER = 32;     // 2.1s (32 * 65,5ms[Timer0]) - SENSORS REFRESH RATE
 
@@ -74,6 +74,10 @@ void main(void)
         else                                    // WHEN AUTO WORK OFF
         {
             TMR2IE = 0;                             // STOP TIMER 2
+            
+            if(TURBINE_STATUS)                      // WHEN TURBINE IS ON
+                TURBINE_STATUS = 0;                     // TURN OFF THE TURBINE
+            
             tmr0_counter = 1;                       // RESET TIMER 0 COUNTER
             TMR0 = 0;                               // RESET TIMER 0 REGISTER
             TMR0IF = 0;                             // CLEAR TIMER 0 INTERRUPT FLAG
@@ -199,14 +203,16 @@ void initialize_ports()
     TRISD3 = 1;             // PORT D PIN 3 INPUT      |
     TRISD4 = 1;             // PORT D PIN 4 INPUT      /
     
+    nop();                  //  <- SET BREAKPOINT HERE TO SET ROOM TEMPERATURE
+    
     PORTB = ROOM_TEMP;      // ASSIGN ROOM TEMP TO FURNACE TEMP                     
 }
 
 void initialize_timer()
 {   
-    nop();
+    nop();                      // BREAKPOINT BREAK [DEBUGGING]
     
-    INTCON = 0b11100000;        // GIE [bit 7] = 1; PEIE [bit 6] = 1;
+    INTCON = 0b11000000;        // GIE [bit 7] = 1; PEIE [bit 6] = 1;
     // GIE - GLOBAL INTERRUPTS ENABLED
     // PEIE - PERIPHERAL INTERRUPTS ENABLED
     
@@ -221,4 +227,5 @@ void initialize_timer()
 void nop()                  
 {
     // USED FOR BREAKING BREAKPOINTS IN DEBUGGING
+    // AND BREAKING THE PROGRAM TO SET ROOM TEMP
 }

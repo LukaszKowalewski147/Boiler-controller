@@ -2,6 +2,7 @@
  * File:   main.c
  * Author: Lukasz Kowalewski
  *
+ * Sterownik kot?a w?glowego:
  * Po nacisninciu przycisku PRACA AUTOMATYCZNA ON/OFF (zmiana z 0 na 1 na wybranym wejsciu)
  * sterowac temperatura kotla tak, aby utrzymac zadana przez uzytkownika temperature
  * pracy (wartosc 8-bitowa na wybranym wejsciu). Symulowana temperatura ma wzrastac
@@ -25,13 +26,13 @@
 #define FUEL_LEVEL_SENSOR   RA1     // 0 - LOW FUEL                 1 - ENOUGH FUEL
 #define TURBINE_GEAR        RA2     // 0 - LOW GEAR                 1 - HIGH GEAR
 #define TARGET_TEMP         PORTC   // TEMPERATURE SET BY USER [7bit - MAX 127]
-#define ROOM_TEMP           PORTD   // STARTING AND MINIMUM FURNACE TEMPERATURE [5bit - MAX 31]
+#define ROOM_TEMP           PORTD   // STARTING AND MINIMUM BOILER TEMPERATURE [5bit - MAX 31]
 
 //// OUTPUTS ////
 #define TURBINE_STATUS      RA3     // 0 - TURBINE OFF              1 - TURBINE ON
-#define LOW_FUEL_ALERT      RA4     // 0 - LOW FUEL ALERT ON        1 - LOW FUEL ALERT OFF
+#define LOW_FUEL_ALERT      RA4     // 0 - LOW FUEL ALERT OFF       1 - LOW FUEL ALERT ON
 #define HIGH_TEMP_ALERT     RA5     // 0 - HIGH TEMP ALERT OFF      1 - HIGH TEMP ALERT ON
-#define TEMPERATURE         PORTB   // TEMPERATURE INSIDE FURNACE
+#define TEMPERATURE         PORTB   // TEMPERATURE INSIDE BOILER
 
 //// CONSTANTS ////
 const int MAX_TEMP        = 90;     // MAXIMUM OPERATING TEMPERATURE

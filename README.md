@@ -28,7 +28,7 @@ Target temperature can be changed at any time.
 ### Controller
 Controllers job is to manage boiler turbine and indicate exceptional events. 
 
-Controllers work starts in automatic work mode.
+Controllers work starts in automatic work mode. The goal is to reach and maintain target temperature.
 Turbine operates only when boiler temperature is lower than target temperature and there is enough fuel. 
 In manual work mode - turbine is automaticly turned off.
 Controllers refresh rate is set to 2s.
